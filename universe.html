@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orchestre Céleste - Univers</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="./universe/sketch.js"></script>
+    <script>
+    // var socket = io()
+    </script>
+    <script>
+    // socket.on('action', function(direction) {
+    // Action
+    // })
+    </script>
+    <style>
+    /* ---- reset ---- */ body{ margin:0; font:normal 75% Arial, Helvetica, sans-serif; } canvas{ display: block; vertical-align: bottom; } /* ---- particles.js container ---- */ #particles-js{ position:absolute; width: 100%; height: 100%; background-color: transparent; background-repeat: no-repeat; background-size: 20%; background-position: 50% 50%; } /* ---- stats.js ---- */ .count-particles{ background: #000022; position: absolute; top: 48px; left: 0; width: 80px; color: #13E8E9; font-size: .8em; text-align: left; text-indent: 4px; line-height: 14px; padding-bottom: 2px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; } .js-count-particles{ font-size: 1.1em; } #stats, .count-particles{ -webkit-user-select: none; margin-top: 5px; margin-left: 5px; } #stats{ border-radius: 3px 3px 0 0; overflow: hidden; } .count-particles{ border-radius: 0 0 3px 3px;}
+    
+    body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        background-color: black;
+        animation: appear 5s both;
+    }
+    canvas {
+        z-index: 10;
+        position: relative;
+    }
+    .p5Canvas {
+        opacity: 1;
+        transition: opacity 5s .5s;
+    }
+    button {
+        z-index: 100;
+        position: relative;
+    }
+    .controls {
+        z-index: 1000;
+        position: absolute;
+    }
+    .page {
+        opacity: 0;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 1s;
+    }
+    .page-container {
+        position: relative;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .page img {
+        max-width: 250px;
+        margin-bottom: 50px;
+    }
+    .page button {
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        padding: .2rem .6rem;
+    }
+    .page button svg {
+        margin-left: 4px;
+    }
+    
+    .not-started .p5Canvas {
+        opacity: 0;
+    }
+    .not-started .page {
+        opacity: 1;
+    }
+    
+    @keyframes appear {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    </style>
+</head>
+<body class="not-started">
+<div id="particles-js"></div>
+<!--
+<div class="count-particles"><span class="js-count-particles">--</span> particles</div>
+-->
+<!--
+<div class="controls">
+    <button class="pitch-plus">Pitch+</button>
+    <button class="pitch-minus">Pitch-</button>
+</div>
+-->
+<div class="page">
+    <div class="page-container">
+        <img src="./img/logo-w.png" alt="">
+        <button class="btn btn-light start">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.999 41.999" style="enable-background:new 0 0 41.999 41.999;" xml:space="preserve">
+                <path d="M36.068,20.176l-29-20C6.761-0.035,6.363-0.057,6.035,0.114C5.706,0.287,5.5,0.627,5.5,0.999v40  c0,0.372,0.206,0.713,0.535,0.886c0.146,0.076,0.306,0.114,0.465,0.114c0.199,0,0.397-0.06,0.568-0.177l29-20  c0.271-0.187,0.432-0.494,0.432-0.823S36.338,20.363,36.068,20.176z"/>
+            </svg>
+        </button>
+    </div>
+</div>
+
+
+<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> <!-- stats.js lib -->
+<script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+<script>
+particlesJS("particles-js", {
+    "particles": {"number": {"value": 200, "density": {"enable": true, "value_area": 800}}, "color": {"value": "#ffffff"}, "shape": {"type": "circle", "stroke": {"width": 0, "color": "#000000"}, "polygon": {"nb_sides": 5}, "image": {"src": "img/github.svg", "width": 100, "height": 100}}, "opacity": {"value": 1, "random": true, "anim": {"enable": true, "speed": 0.8, "opacity_min": 0, "sync": false}}, "size": {"value": 1.7, "random": true, "anim": {"enable": true, "speed": 0.2, "size_min": 1, "sync": false}}, "line_linked": {"enable": false, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1}, "move": {"enable": true, "speed": 0, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false, "attract": {"enable": false, "rotateX": 1, "rotateY": 1}}},
+    "interactivity": {"detect_on": "canvas", "events": {"onhover": {"enable": false, "mode": "bubble"}, "onclick": {"enable": false, "mode": "repulse"}, "resize": true}, "modes": {"grab": {"distance": 400, "line_linked": {"opacity": 1}}, "bubble": {"distance": 250, "size": 0, "duration": 2, "opacity": 0, "speed": 3}, "repulse": {"distance": 400, "duration": 0.4}, "push": {"particles_nb": 4}, "remove": {"particles_nb": 2}}},
+    "retina_detect": true
+})
+/*
+var count_particles, stats, update
+stats = new Stats
+stats.setMode(0)
+stats.domElement.style.position = 'absolute'
+stats.domElement.style.left = '0px'
+stats.domElement.style.top = '0px'
+document.body.appendChild(stats.domElement)
+count_particles = document.querySelector('.js-count-particles')
+update = function () {
+    stats.begin()
+    stats.end()
+    if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
+        count_particles.innerText = window.pJSDom[0].pJS.particles.array.length
+    }
+    requestAnimationFrame(update)
+}
+requestAnimationFrame(update)
+*/
+</script>
+
+<script src="./universe/music.js"></script>
+</body>
+</html>

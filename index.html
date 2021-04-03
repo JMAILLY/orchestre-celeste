@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Orchestre Céleste</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.6/p5.js"></script>
+    <script src="./sketch.js"></script>
+    <script>
+    var socket = io()
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('button').on('click', function() {
+            socket.emit('action', 'value')
+        })
+    })
+    </script>
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<nav>
+    <div class="ul-container">
+        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active btn-dark" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Lancement</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn-dark" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Customisation</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div id="canvas-thrower">
+            
+            </div>
+        </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="dropdown">
+                
+                <div class="customization">
+                    <div class="customization-container">
+                        
+                        <section class="tempo">
+                            <div class="form-group">
+                                <p>
+                                    <span>Tempo :</span>
+                                    <span class="tempo-value big">120</span>
+                                </p>
+                                <input type="range" class="form-control-range" id="formControlRange" min="20" max="1000" value="120">
+                            </div>
+                        </section>
+                        
+                        <section class="pitch">
+                            <div class="form-group">
+                                <p>
+                                    <span>Tonalité :</span>
+                                    <span class="pitch-value big"></span>
+                                </p>
+                                <div class="buttons-container">
+                                    <button class="btn btn-dark minus"><span class="big">-</span></button>
+                                    <button class="btn btn-dark plus"><span class="big">+</span></button>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section class="scale">
+                            <div class="form-group">
+                                <p>
+                                    <span>Gamme :</span>
+                                    <span class="scale-value big">Majeure</span>
+                                </p>
+                                <div class="buttons-container">
+                                    <button class="btn btn-dark major">Majeure</button>
+                                    <button class="btn btn-dark minor">Mineure</button>
+                                </div>
+                            </div>
+                        </section>
+                    
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+<script>
+particlesJS("particles-js", {
+    "particles": {"number": {"value": 200, "density": {"enable": true, "value_area": 800}}, "color": {"value": "#ffffff"}, "shape": {"type": "circle", "stroke": {"width": 0, "color": "#000000"}, "polygon": {"nb_sides": 5}, "image": {"src": "img/github.svg", "width": 100, "height": 100}}, "opacity": {"value": 1, "random": true, "anim": {"enable": true, "speed": 0.8, "opacity_min": 0, "sync": false}}, "size": {"value": 1.7, "random": true, "anim": {"enable": true, "speed": 0.2, "size_min": 1, "sync": false}}, "line_linked": {"enable": false, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1}, "move": {"enable": true, "speed": 0, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false, "attract": {"enable": false, "rotateX": 1, "rotateY": 1}}},
+    "interactivity": {"detect_on": "canvas", "events": {"onhover": {"enable": false, "mode": "bubble"}, "onclick": {"enable": false, "mode": "repulse"}, "resize": true}, "modes": {"grab": {"distance": 400, "line_linked": {"opacity": 1}}, "bubble": {"distance": 250, "size": 0, "duration": 2, "opacity": 0, "speed": 3}, "repulse": {"distance": 400, "duration": 0.4}, "push": {"particles_nb": 4}, "remove": {"particles_nb": 2}}},
+    "retina_detect": true
+})
+</script>
+
+<script>
+
+var pitch = 3
+
+function setPitch() {
+    if (pitch < 0) {
+        pitch = 0;
+    }
+    if (pitch > 6) {
+        pitch = 6;
+    }
+    
+    if (pitch > 0) {
+        $('.pitch-value').html('+' + pitch)
+    }
+    else {
+        $('.pitch-value').html(pitch)
+    }
+    socket.emit('pitch', pitch)
+}
+
+$(document).ready(function() {
+    // $(".nav-link:last-child").trigger('click')
+    setPitch()
+})
+
+$('.tempo input').on('input', function() {
+    $('.tempo-value').html($(this).val())
+    socket.emit('bpm', $(this).val())
+})
+
+$('.pitch button.plus').on('click', function() {
+    pitch++
+    setPitch()
+})
+$('.pitch button.minus').on('click', function() {
+    pitch--
+    setPitch()
+})
+
+$('.scale button.major').on('click', function() {
+    $('.scale-value').html($(this).html())
+    socket.emit('scale', 'major')
+})
+$('.scale button.minor').on('click', function() {
+    $('.scale-value').html($(this).html())
+    socket.emit('scale', 'minor')
+})
+
+$( ".dropdown-item" ).on('click', function() {
+    $(".default-content").css("display","none");
+    $(".selected-content").css("display","flex");
+});
+</script>
+</body>
+
+</html>

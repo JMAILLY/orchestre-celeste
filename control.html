@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orchestre Céleste - Univers</title>
+    <style> body {padding: 0; margin: 0; overflow: hidden; background-color: black;} </style>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script>
+    var socket = io()
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('button').on('click', function() {
+            socket.emit('action', 'value')
+        })
+    })
+    </script>
+</head>
+<body>
+</body>
+</html>

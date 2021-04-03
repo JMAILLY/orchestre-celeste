@@ -1,0 +1,178 @@
+
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+
+/* ---- reset ---- */ body{ margin:0; font:normal 75% Arial, Helvetica, sans-serif; } canvas{ display: block; vertical-align: bottom; } /* ---- particles.js container ---- */ #particles-js{ position:absolute; width: 100%; height: 100%; background-color: transparent; background-repeat: no-repeat; background-size: 20%; background-position: 50% 50%; } /* ---- stats.js ---- */ .count-particles{ background: #000022; position: absolute; top: 48px; left: 0; width: 80px; color: #13E8E9; font-size: .8em; text-align: left; text-indent: 4px; line-height: 14px; padding-bottom: 2px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; } .js-count-particles{ font-size: 1.1em; } #stats, .count-particles{ -webkit-user-select: none; margin-top: 5px; margin-left: 5px; } #stats{ border-radius: 3px 3px 0 0; overflow: hidden; } .count-particles{ border-radius: 0 0 3px 3px;}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+    letter-spacing: 1.5px;
+}
+html,
+body {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+}
+a, p {
+    font-size: 2.4vh;
+}
+nav {
+    position: relative;
+    height: 100vh;
+}
+nav .ul-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+nav ul {
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    padding-bottom: 0;
+}
+nav li {
+    flex: 1;
+}
+nav li a {
+    color: white;
+}
+.nav-pills .nav-link {
+    text-align: center;
+    border-radius: 0;
+}
+
+.tab-content,
+.tab-content .tab-pane {
+
+}
+
+.dropdown button{
+    width: 100%;
+    border-radius: 0;
+}
+.dropdown-menu{
+    width: 100%;
+    transform: none !important;
+    top: 38px !important;
+}
+
+.default-content{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.selected-content{
+    display: none;
+    flex-direction: column;
+}
+.selected-content h1{
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+
+.customization {
+    padding: 30px;
+    padding-top: 50px;
+}
+.customization-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.customization label,
+.customization input,
+.customization p {
+    color: white;
+    font-size: 2.8vh;
+}
+.customization button {
+    font-size: 2.4vh;
+    padding: 1vh 3vh;
+}
+.customization span.big {
+    font-size: 3.2vh;
+}
+.customization span.bigger {
+    font-size: 3.6vh;
+}
+.customization section {
+    width: 100%;
+    max-width: 40vh;
+    margin-bottom: 40px;
+}
+
+.customization p {
+    text-align: center;
+}
+.buttons-container {
+    display: flex;
+    width: 100%;
+}
+.buttons-container button {
+    margin: 2px;
+}
+
+.pitch {
+    max-width: 20vh;
+}
+
+
+
+
+
+
+
+
+
+
+input[type=range] {
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 100%; /* Specific width is required for Firefox. */
+    background: transparent; /* Otherwise white in Chrome */
+    margin-top: 30px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+    
+    /* Hides the slider so custom styles can be added */
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    margin-top: calc(-15px + 2px);
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background: rgba(255,255,255, .5);
+    border-radius: 1.3px;
+}
