@@ -43,6 +43,13 @@ app.get('/img/logo-w.png', function(req,res) {
     res.sendFile(__dirname + '/img/logo-w.png')
 })
 
+app.get('/api', (req, res) => {
+    res.end(`Hello!`)
+})
+app.get('/api/universe', (req, res) => {
+    res.end(`Hello 2!`)
+})
+
 io.on('connection', function(socket) {
     // console.log('User connected')
     
